@@ -27,6 +27,13 @@ def rotate(img,angle,rotPoint=None):
 rotated = rotate(img,45)
 cv.imshow('Rotated',rotated)
 
+resized = cv.resize(img,(550,550),interpolation=cv.INTER_CUBIC)
+cv.imshow('resized',resized)
+
+#flipping
+flipped = cv.flip(resized,0)
+cv.imshow('Flip',flipped)
+
 cv.waitKey(0)        
 
 
