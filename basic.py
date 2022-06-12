@@ -1,5 +1,6 @@
 import cv2 as cv
 from cv2 import erode
+from cv2 import INTER_CUBIC
 from numpy import ediff1d
 img = cv.imread('photos/cat.jpg')
 cv.imshow('cat',img)
@@ -20,4 +21,10 @@ cv.imshow('Dilate',dilate)
 #Eroding
 erode = cv.erode(dilate,(7,7),iterations=3)
 cv.imshow('Erode',erode)
+#resizing
+resized = cv.resize(img,(550,550),interpolation=cv.INTER_CUBIC)
+cv.imshow('resized',resized)
+#crop
+cropped= img[50:200,200:400]
+cv.imshow('Cropped',cropped)
 cv.waitKey(0)
