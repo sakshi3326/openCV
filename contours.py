@@ -1,10 +1,15 @@
 import cv2 as cv
+import numpy as np
 from cv2 import blur
+from numpy import dtype
 
 img = cv.imread('photos/panda.webp')
 
 resized = cv.resize(img,(550,550),interpolation=cv.INTER_CUBIC)
 cv.imshow('Img',resized)
+blank = np.zeros(resized.shape,dtype='uint8')
+cv.imshow('Blank',blank)
+
 gray = cv.cvtColor(resized,cv.COLOR_BGR2GRAY)
     
 cv.imshow('Gray', gray)
@@ -20,4 +25,6 @@ cv.imshow('Thresh',thresh)
 contours,hierarchies = cv.findContours(thresh,cv.RETR_LIST,cv.CHAIN_APPROX_SIMPLE)
 print(f'{len(contours)} contour(s) found!')
 
+cv.drawContours(blank,contours,-1,(0,0,255),2)
+cv.imshow('Contours ', blank)
 cv.waitKey(0)
